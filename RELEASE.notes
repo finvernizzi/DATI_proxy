@@ -1,0 +1,17 @@
+--- 0.0.5 ---
+
+
+mplane lib
+
+
+Supervisor
+	- Now it checks if constraints are given
+	- In the agent.config added the map between a measure capability and the config file to use
+	- Better control on the values of the paramters (queueSpecification)
+	- Now we have capabilities, not probes
+	- If a capability is already registered, it returns the link to contact with the 403 code (potentially unsafe)
+	- Now all the elements are created from standard mplane API (all workaround like createSpecificationFromRegisteredCapability have been removed)
+
+DATI proxy
+    - It now works even if the is already registered on the supervisor
+    - Works on multiple resultColumm in the same Capability/Specification

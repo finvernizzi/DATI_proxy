@@ -1,0 +1,89 @@
+{
+	"dataDir" : "/Users/invernizzi/Documents/mplane/DATIProxy/data/",
+	"SQL_QUERY" : "select min(ts) as ts, avg(QoEs) as QoEs, avg(QoEsTot) as QoEsTot, avg(QoEa) as QoEa, avg(QoETerm) as QoETerm, avg(QoEindex) QoEindex from video_stats",
+	"xField" : "ts",
+	"categoriesField" : "",
+	"presentationFunction": "presentation",
+	"rowElaborationFunction": "rowElaboration",
+	"rowXMapFunction": "changeTime",
+	"referencePeriodFromFileFunction" : "referencePeriodFromFile",
+	"postElaborationFunction": "postElaboration",
+	"preElaborationFunction": "preElaboration",
+	"scriptFile" : "/Users/invernizzi/Documents/mplane/DATIProxy/script/DATI_agent_script.js",
+	"dbReadingMAXConcurrency" : 10,
+	"version" : "1.10",
+	"syslogSelector" : "datiAgent",
+	"port": 8080,
+	"systemID" : "DATI-TO02",
+	"configsDir" : "/Users/invernizzi/Documents/mplane/DATIProxy/configs/",
+	"select": "tree",
+	"view":{
+		"type": "line",
+		"title" : "--- Default stat configuration ---",
+		"subTitle": "Probabily is not what you want!",
+		"xText": "TbD",
+		"yText": "TbD"
+	},
+	"HTTP":{
+		"mimeTypes" :{
+			"html": "text/html",
+			"jpeg": "image/jpeg",
+			"jpg": "image/jpeg",
+			"png": "image/png",
+			"js": "text/javascript",
+			"css": "text/css"
+		},
+		"CacheControl":{
+			"png": "public"
+		},
+		"documentRoot": "/usr/script/agent/www/",
+		"documentErrorRoot": "/usr/script/agent/www/HTTP_ERRORS/",
+		"systemStatsRoot":"/usr/local/www/stats/mrtg/",
+		"index":"index.html",
+		"passFile" : "/passwd",
+		"log":{
+			"directory": "/var/log/DATI/", 
+			"filename": "access.log", 
+			"format": "combined"  
+		}
+	}
+	,"mplane":{
+		"supervisor":{
+			"host": "Supervisor-1.TI.mplane.org",
+			"port": 2427
+		},
+		"retryConnect" : "5000",
+		 "ceckSpecificationPeriod":5000,
+	     	 "checkForSpecificationPeriod": "10000",
+		 "measureToQuery":{
+		        "delay.tcp.twoway.min":{
+				    "statId":"rttStats_min",
+				    "__statId_COMMENT":"La statistica, quindi il config file, da utilizzare",
+				    "SqlColumnName":"rtt",
+				    "__SqlColumnName__COMMENT":"E la colonna SQL da utilizzare come valore per questo parametro"
+
+				}
+                ,"delay.tcp.twoway.max":{
+                     "statId":"rttStats_max",
+                     "__statId_COMMENT":"La statistica, quindi il config file, da utilizzare",
+                     "SqlColumnName":"rtt",
+                     "__SqlColumnName__COMMENT":"E la colonna SQL da utilizzare come valore per questo parametro"
+                }
+                 ,"delay.tcp.twoway.mean":{
+                     "statId":"rttStats",
+                     "__statId_COMMENT":"La statistica, quindi il config file, da utilizzare",
+                     "SqlColumnName":"rtt",
+                     "__SqlColumnName__COMMENT":"E la colonna SQL da utilizzare come valore per questo parametro"
+                 }
+		}
+	},
+    "ssl":{
+        "key": "../ca/certs/Client-TI-plaintext.key"
+        ,"cert": "../ca/certs/Client-TI.crt"
+        ,"ca": ["../ca/root-ca/root-ca.crt"]
+        ,"hostName":"Supervisor-1.TI.mplane.org."
+        ,"requestCert" : true
+    }
+}
+
+
